@@ -21,6 +21,7 @@ while True:
     uuid = MojangAPI.get_uuid(username)
 
     url = f"https://api.hypixel.net/player?key={api}&uuid={uuid}"
+    webhook = "" # Enter discord webhook here
 
     data = getinfo(url)
 
@@ -34,9 +35,13 @@ while True:
     if losses is None:
         print(Fore.RED + f"-> {username} has 0 sumo losses" + "\n")
     else:
-        print(Fore.GREEN + f"-> {username} has {losses} sumo losses" + "\n")    
-    print(Fore.GREEN + f"-> {username} has {wins} sumo wins" + "\n")
-    print(Fore.GREEN + f"-> {username} has played {roundsplayed} games of sumo" + "\n")
-    print(Fore.GREEN + f"-> {username} has a {wlr} WLR" + "\n" + Fore.WHITE)
+        losses1 = f"**{username}** has __***{losses}***__ sumo losses" + "\n"
+    wins1 = f"**{username}** has __***{wins}***__ sumo wins" + "\n"
+    roundsplayed1 = f"**{username}** has played __***{roundsplayed}***__ games of sumo" + "\n"
+    wlr1 = f"**{username}** has a __***{wlr}***__ WLR" + "\n"
+    
+    data = {"content": f'-------------------------✦❘༻༺❘✦-------------------------\n                                          ``Stats:`` \n\n{losses1}{wins1}{roundsplayed1}{wlr1}-------------------------✦❘༻༺❘✦-------------------------'}
+    response = requests.post(webhook, json=data)
+    print("Stats sent to webhook!")
     time.sleep(10)
     system("cls")
