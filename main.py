@@ -40,8 +40,14 @@ while True:
     roundsplayed1 = f"**{username}** has played __***{roundsplayed}***__ games of sumo" + "\n"
     wlr1 = f"**{username}** has a __***{wlr}***__ WLR" + "\n"
     
-    data = {"content": f'-------------------------✦❘༻༺❘✦-------------------------\n                                          ``Stats:`` \n\n{losses1}{wins1}{roundsplayed1}{wlr1}-------------------------✦❘༻༺❘✦-------------------------'}
+    data["embeds"] = [
+    {
+        "description" : f"{losses1}{wins1}{roundsplayed1}{wlr1}",
+        "title" : "``Stats:`` "
+    }
+]
     response = requests.post(webhook, json=data)
     print("Stats sent to webhook!")
     time.sleep(10)
     system("cls")
+
