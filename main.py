@@ -3,6 +3,7 @@ import json
 from mojang import MojangAPI
 import time
 from os import system
+import sys
 
 
 while True:
@@ -37,14 +38,22 @@ while True:
     roundsplayed1 = f"**{username}** has played __***{roundsplayed}***__ games of sumo" + "\n"
     wlr1 = f"**{username}** has a __***{wlr}***__ WLR" + "\n"
     
+    if wlr > 2:
+        color = "15076352"
+    else:
+        color = "58892"
+    
 
-    data["embeds"] = [
-    {
-        "description" : f"{losses1}{wins1}{roundsplayed1}{wlr1}",
-        "title" : "``Stats:`` "
+    webhook_message = {
+        "embeds": [{
+            "title": "``Stats:`` ",
+            "description": f"{losses1}{wins1}{roundsplayed1}{wlr1}",
+            "color": color
+            }]
     }
-]
-    response = requests.post(webhook, json=data)
-    print("Stats sent to webhook!")
+    
+    
+    response = requests.post(webhook, json=webhook_message)
+    print("Stats sent to webhook!\nClosing file in 10 seconds")
     time.sleep(10)
-    system("cls")
+    sys.exit()
