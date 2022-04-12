@@ -2,7 +2,6 @@ import requests
 import json
 from mojang import MojangAPI
 import time
-from os import system
 import sys
 
 
