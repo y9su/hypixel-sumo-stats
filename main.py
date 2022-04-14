@@ -12,13 +12,13 @@ while True:
         return r.json()
 
 
-    api = "" # Enter your Hypixel API key here
+    api = json.loads(open("config.json").read())['api']
 
     username = input("Minecraft Username: ")
     uuid = MojangAPI.get_uuid(username)
 
     url = f"https://api.hypixel.net/player?key={api}&uuid={uuid}"
-    webhook = "" # Enter discord webhook here
+    webhook = json.loads(open("config.json").read())['webhook']
 
     data = getinfo(url)
 
@@ -37,16 +37,19 @@ while True:
     roundsplayed1 = f"**{username}** has played __***{roundsplayed}***__ games of sumo" + "\n"
     wlr1 = f"**{username}** has a __***{wlr}***__ WLR" + "\n"
     
-    if wlr > 2:
+    wlr_dangerous = json.loads(open("config.json").read())['wlr_dangerous']
+    if wlr > wlr_dangerous:
         color = "15076352"
+        danger = f"**{username}** is a **dangerous** opponent!"
     else:
         color = "58892"
-    
+        danger = f"**{username}** is **not** a dangerous opponent!"
+        
 
     webhook_message = {
         "embeds": [{
             "title": "``Stats:`` ",
-            "description": f"{losses1}{wins1}{roundsplayed1}{wlr1}",
+            "description": f"{losses1}{wins1}{roundsplayed1}{wlr1}\n{danger}",
             "color": color
             }]
     }
