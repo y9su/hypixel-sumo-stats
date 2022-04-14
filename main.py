@@ -40,10 +40,10 @@ while True:
     wlr_dangerous = json.loads(open("config.json").read())['wlr_dangerous']
     if wlr > wlr_dangerous:
         color = "15076352"
-        danger = f"**{username}** is a **dangerous** opponent!"
+        danger = f":red_circle: **{username}** is a **dangerous** opponent!"
     else:
         color = "58892"
-        danger = f"**{username}** is **not** a dangerous opponent!"
+        danger = f":green_circle: **{username}** is **not** a dangerous opponent!"
         
 
     webhook_message = {
