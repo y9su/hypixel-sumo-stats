@@ -22,5 +22,8 @@ This project uses a number of libaries to work properly:
    [mojang]: <https://mojang.readthedocs.io/en/latest/>
    [time]: <https://docs.python.org/3/library/time.html>
    [sys]: <https://docs.python.org/3/library/sys.html>
+   [Sumo Stats Bot]: <https://github.com/y9su/sumo-stats-bot>
 
 **Written in Python**
+
+**See [Sumo Stats Bot] for the discord bot version of this project!**
